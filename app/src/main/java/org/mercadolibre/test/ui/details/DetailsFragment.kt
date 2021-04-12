@@ -5,7 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import org.mercadolibre.test.MainActivity
+import org.mercadolibre.test.data.model.DataDetails
 import org.mercadolibre.test.data.model.Result
 import org.mercadolibre.test.databinding.FragmentDetailsBinding
 import org.mercadolibre.test.databinding.FragmentDetailsBindingImpl
@@ -21,7 +24,7 @@ class DetailsFragment : Fragment() {
     }
 
     private lateinit var binding: FragmentDetailsBinding
-    private lateinit var photo: Result
+    private lateinit var photo: DataDetails
     private var shortAnimationDuration: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,14 +33,15 @@ class DetailsFragment : Fragment() {
     }
 
     private fun loadArguments() {
-        //arguments?.getParcelable<Result>(PHOTO_ARG)?.let {
-            //photo = it
-        //}
+        arguments?.getParcelable<DataDetails>(PHOTO_ARG)?.let {
+            photo = it
+        }
     }
 
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
+        
         binding = FragmentDetailsBindingImpl.inflate(inflater)
         binding.photoBinding = photo
         binding.lifecycleOwner = this@DetailsFragment

@@ -1,17 +1,21 @@
 package org.mercadolibre.test.ui.home
 
-import android.os.Parcel
-import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
+import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.snackbar.Snackbar
 import org.mercadolibre.test.R
+import org.mercadolibre.test.data.model.DataDetails
 import org.mercadolibre.test.data.model.Result
 import org.mercadolibre.test.databinding.RowItemBinding
 import org.mercadolibre.test.ui.details.DetailsFragment
 import org.mercadolibre.test.utils.extensions.setImageFromUrlWithProgressBar
+
 
 class ItemsAdapter(private val photosList: ArrayList<Result>) :
     RecyclerView.Adapter<ItemsAdapter.PhotosViewHolder>() {
@@ -38,7 +42,8 @@ class ItemsAdapter(private val photosList: ArrayList<Result>) :
             binding.executePendingBindings()
             binding.rowPhotoRoverImg.setImageFromUrlWithProgressBar(photo.thumbnail!!, binding.rowPhotoRoverProgress)
             binding.root.setOnClickListener { view ->
-                val bundle = bundleOf(DetailsFragment.PHOTO_ARG to photo)
+                val data = DataDetails(photo.title!!,photo.price,photo.thumbnail!!)
+                val bundle = bundleOf(DetailsFragment.PHOTO_ARG to data)
                 view.findNavController().navigate(R.id.action_FirstFragment_to_detailsFragment, bundle)
             }
         }

@@ -1,5 +1,7 @@
 package org.mercadolibre.test.data.model
 
+import android.os.Parcelable
+import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 import java.util.*
 
@@ -216,6 +218,12 @@ class DifferentialPricing {
     var id = 0
 }
 
+@Parcelize
+data class DataDetails(
+    @SerializedName("title")val title: String,
+    @SerializedName("price")val price: Double,
+    @SerializedName("thumbnail")val thumbnail: String
+) : Parcelable
 
 class Result {
     var id: String? = null
