@@ -14,4 +14,8 @@
     <string name="title_home">Home</string>
     <string name="title_info">General Info</string>
     <string name="no_data_msg">No data available</string>
+
+    <string name="info_fragment_title">Aplicación de pruebas</string>
+    <string name="info_fragment_api_text">Hola!, Soy Yeisson Andres Merchan Lemus. Estudie ingeniería de sistemas en la universidad Jorge Tadeo Lozano, actualmente me encuentro estudiando un máster en desarrollo de aplicaciones móviles en la universidad politécnica de Valencia. Me gusta mucho aprender cosas nuevas cada día. En esta prueba use el patrón de arquitectura MVVM para la integración con el servicio de consulta de ítems.</string>
+
 </resources>

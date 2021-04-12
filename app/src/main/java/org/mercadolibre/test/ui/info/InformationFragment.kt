@@ -7,7 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.navigation.fragment.findNavController
+import org.mercadolibre.test.MainActivity
 import org.mercadolibre.test.R
+import org.mercadolibre.test.databinding.FragmentInformatonBinding
+import org.mercadolibre.test.utils.extensions.setImageFromResourcesWithProgressBar
 
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
@@ -15,23 +18,35 @@ import org.mercadolibre.test.R
 class InformationFragment : Fragment() {
 
     companion object {
-        fun newInstance(): InformationFragment =
-            InformationFragment()
+        fun newInstance(): InformationFragment = InformationFragment()
     }
 
-    override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?,
-            savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_informaton, container, false)
+    private lateinit var binding: FragmentInformatonBinding
+
+    override fun onCreateView(inflater: LayoutInflater,
+                              container: ViewGroup?,
+                              savedInstanceState: Bundle?): View? {
+        binding = FragmentInformatonBinding.inflate(inflater)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initBindings()
+    }
 
-        view.findViewById<Button>(R.id.button_second).setOnClickListener {
-            findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
+    private fun initBindings() {
+        //hides activity's toolbar
+        (activity as MainActivity).supportActionBar?.hide()
+        with(binding.toolbar) {
+            this.setTitle(R.string.title_info)
         }
+        binding.generalInfoToolbarImage.setImageFromResourcesWithProgressBar(R.drawable.catalogo,
+            binding.generalInfoProgress)
+    }
+
+    override fun onDestroy() {
+        (activity as MainActivity).supportActionBar?.show()
+        super.onDestroy()
     }
 }
