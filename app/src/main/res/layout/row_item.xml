@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="itemBinding"
+            type="org.mercadolibre.test.data.model.Result" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_margin="1dp"
+        android:elevation="2dp"
+        app:cardCornerRadius="4dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="-40dp"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/row_name"
+                style="@style/AppTheme.Home.Row.Item"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:drawableStart="@drawable/ic_info"
+                android:drawablePadding="8dp"
+                android:text="@{itemBinding.title}"
+                app:layout_constraintBottom_toTopOf="@+id/row_price"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="packed"
+                app:layout_constraintWidth_percent="0.6" />
+
+            <TextView
+                android:id="@+id/row_price"
+                style="@style/AppTheme.Home.Row.Item"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:drawableStart="@drawable/ic_money"
+                android:drawablePadding="8dp"
+                android:text="@{Double.toString(itemBinding.price)}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/row_name"
+                app:layout_constraintTop_toBottomOf="@+id/row_name"
+                app:layout_constraintWidth_percent="0.6" />
+
+            <TextView
+                android:id="@+id/row_state"
+                style="@style/AppTheme.Home.Row.Item"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:drawableStart="@drawable/ic_state"
+                android:drawablePadding="8dp"
+                android:text="@{itemBinding.condition}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/row_price"
+                app:layout_constraintTop_toBottomOf="@+id/row_price"
+                app:layout_constraintWidth_percent="0.6" />
+
+
+            <ImageView
+                android:id="@+id/row_photo_rover_img"
+                android:layout_width="0dp"
+                android:layout_marginTop="40dp"
+                android:layout_height="match_parent"
+                android:image_url="@{itemBinding.thumbnail}"
+                android:scaleType="centerCrop"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent="0.35" />
+
+            <ProgressBar
+                android:id="@+id/row_photo_rover_progress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/row_photo_rover_img"
+                app:layout_constraintStart_toStartOf="@+id/row_photo_rover_img"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</layout>
